@@ -24,6 +24,8 @@ export interface PropertyProps {
     location: string,
     price: string,
     photo: string,
+    beds: string,
+    room_size: string,
     creator: string
 }
 

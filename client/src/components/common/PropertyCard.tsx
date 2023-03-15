@@ -1,15 +1,15 @@
-import { Place } from "@mui/icons-material"
+import { Bed, CropSquareSharp, Place } from "@mui/icons-material"
 import { Link } from "@pankod/refine-react-router-v6"
 import {Typography, Box, Card, CardMedia, CardContent, Stack} from '@pankod/refine-mui'
 
 import { PropertyCardProps  } from "interfaces/property"
 
-const PropertyCard = ( { id, title, location, price, photo} : PropertyCardProps) => {
+const PropertyCard = ( { id, title, location, price, photo, beds, length} : PropertyCardProps) => {
   return (
     <Card
       component={Link}
       to={`/properties/show/${id}`}
-      sx={{maxWidth: '330px', padding: '10px',
+      sx={{maxWidth: '330px', padding: '10px', backgroundColor: '#fcfcfc',
         '&:hover': {
           boxShadow: '0 22px 45px 2px rgba(176,176,176,0.1)'
         },
@@ -36,10 +36,22 @@ const PropertyCard = ( { id, title, location, price, photo} : PropertyCardProps)
             />
             <Typography fontSize={14} color='#808191'>{location}</Typography>
           </Stack>
+          <Stack direction='row' gap={1} alignItems='flex-start'>
+            <Typography fontSize={12} fontWeight={500} color="#11142d" textTransform='capitalize' display='flex' alignItems='center' gap={0.5}>
+                  <Bed fontSize="small" sx={{color: '#808191'}}/>
+                  {beds} Beds
+            </Typography>
+            <Typography fontSize={12} fontWeight={500} color="#11142d" textTransform='capitalize' display='flex' alignItems='center' gap={0.5}>
+              <CropSquareSharp fontSize="small" sx={{color: '#808191'}}/>
+              {length} Lenghts
+            </Typography>
+          </Stack>
         </Stack>
-        <Box px={1.5} py={0.5} borderRadius={1} bgcolor='#dadefa' height='fit-content'>
-          <Typography fontSize={12} fontWeight={600} color='#475be8' >${price}</Typography>
-        </Box>
+        <Stack>
+          <Box px={1.5} py={0.5} borderRadius={1} bgcolor='#dadefa' height='fit-content'>
+            <Typography fontSize={12} fontWeight={600} color='#475be8' >₹{price}</Typography>
+          </Box>
+        </Stack>
       </CardContent>
     </Card>
   )

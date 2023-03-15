@@ -4,8 +4,6 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { ThemeProvider } from "@pankod/refine-mui";
-import { DarkTheme, LightTheme } from "@pankod/refine-mui";
 
 type ColorModeContextType = {
   mode: string;
@@ -48,9 +46,7 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
         mode,
       }}
     >
-      <ThemeProvider theme={mode === "light" ? LightTheme : DarkTheme}>
-        {children}
-      </ThemeProvider>
+      {children}
     </ColorModeContext.Provider>
   );
 };

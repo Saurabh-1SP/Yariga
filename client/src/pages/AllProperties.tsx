@@ -1,7 +1,7 @@
 import {useMemo} from 'react'
-import {Add, TypeSpecimenTwoTone} from '@mui/icons-material'
-import {LogicalFilter, useTable} from '@pankod/refine-core'
-import { Box, Stack, TextField, Typography, Select, MenuItem, style  } from '@pankod/refine-mui'
+import {Add} from '@mui/icons-material'
+import { useTable} from '@pankod/refine-core'
+import { Box, Stack, TextField, Typography, Select, MenuItem} from '@pankod/refine-mui'
 import { useNavigate } from '@pankod/refine-react-router-v6'
 
 import { PropertyCard, CustomButton } from 'components'
@@ -81,8 +81,8 @@ const AllProperties = () =>{
                 color='info'
                 displayEmpty
                 required
-                inputProps={{'aria-label' : 'Without label', }}
-                sx={{fontSize: '12px',}}
+                inputProps={{'aria-label' : 'Without label',}}
+                sx={{fontSize: '12px', color: '#808191'}}
                 defaultValue=''
                 value={currentFilterValues.propertyType}
                 onChange={(e)=>{
@@ -95,9 +95,9 @@ const AllProperties = () =>{
                   ], 'replace')
                 }}
               >
-                <MenuItem value=''> All</MenuItem>
+                <MenuItem value='' sx={{color: '#808191'}} > All</MenuItem>
                 {['Apartment', 'Villa', 'Farmhouse', 'Condos', 'Townhouse', 'Duplex', 'Studio', 'Chalet'].map((type) => (
-                  <MenuItem key={type} sx={{padding: '0',width:'300px'}} value={type.toLowerCase()}>{type}
+                  <MenuItem key={type} sx={{width:'300px',}} value={type.toLowerCase()}>{type}
                   </MenuItem>
                 ))}
               </Select>
@@ -125,6 +125,8 @@ const AllProperties = () =>{
             price= {property.price}
             location= {property.location}
             photo= {property.photo}
+            beds={property.beds}
+            length={property.room_size}
             />
           ))}
         </Box>
@@ -138,7 +140,7 @@ const AllProperties = () =>{
               color='#fcfcfc'
               disabled={!(current> 1)}
             />
-            <Box display={{xs: 'hidden', sm: 'flex'}} alignItems='center' gap='5px'>
+            <Box display={{xs: 'hidden', sm: 'flex'}} alignItems='center' gap='5px' color='#808191'>
               Page{''}<strong>{current} of {pageCount}</strong>
             </Box>
             <CustomButton
@@ -153,7 +155,8 @@ const AllProperties = () =>{
               color='info'
               displayEmpty
               required
-              inputProps={{'aria-label' : 'Without label'}}
+              inputProps={{'aria-label' : 'Without label',}}
+              sx={{color: '#808191',}}
               defaultValue={10}
               onChange={(e)=> setPageSize(e.target.value ? Number(e.target.value) : 10)}
               >
