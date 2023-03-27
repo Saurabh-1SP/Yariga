@@ -1,18 +1,9 @@
-import { Box, Typography, FormControl, FormHelperText, TextField, TextareaAutosize, Stack, Select, MenuItem, Button, Radio, RadioGroup, FormControlLabel, FormLabel, Checkbox, FormGroup} from '@pankod/refine-mui'
+import { Box, Typography, FormControl, FormHelperText, TextField, TextareaAutosize, Stack, Select, MenuItem, Button,FormControlLabel, FormLabel, Checkbox, FormGroup} from '@pankod/refine-mui'
 
 import { FormProps } from 'interfaces/common'
-import { useState } from 'react'
 import CustomButton from './CustomButton'
 
 
-    const checkedOptions: string | string[] = []
-
-const handleCheckboxChange = (event: { target: { name: any; checked: any } }) => {
-  const option = event.target.name;
-  const isChecked = event.target.checked;
-
-
-  console.log(checkedOptions);}
 
 const Form = ({type, register, handleSubmit, handleImageChange, formLoading, onFinishHandler, propertyImage,facilities,selectedFacilities,setSelectedFacilities} : FormProps) => {
   return (

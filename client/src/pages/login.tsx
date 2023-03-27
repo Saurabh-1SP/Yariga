@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLogin } from "@pankod/refine-core";
-import { Container, Box } from "@pankod/refine-mui";
+import { Container, Box, CircularProgress } from "@pankod/refine-mui";
 
 import { yariga } from "assets";
 
@@ -8,6 +8,8 @@ import { CredentialResponse } from "../interfaces/google";
 
 export const Login: React.FC = () => {
   const { mutate: login } = useLogin<CredentialResponse>();
+  const [loading , setLoading] = useState(false);
+
 
   const GoogleButton = (): JSX.Element => {
     const divRef = useRef<HTMLDivElement>(null);
@@ -16,7 +18,7 @@ export const Login: React.FC = () => {
       if (typeof window === "undefined" || !window.google || !divRef.current) {
         return;
       }
-
+      setLoading(true)
       try {
         window.google.accounts.id.initialize({
           ux_mode: "popup",
@@ -34,6 +36,8 @@ export const Login: React.FC = () => {
         });
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     }, []); // you can also add your client id as dependency here
 
@@ -69,7 +73,11 @@ export const Login: React.FC = () => {
             <img src={yariga} alt="Refine Logo" />
           </div>
           <Box mt={4}>
+            {loading ? (
+              <CircularProgress/>
+            ) : (
             <GoogleButton />
+            )}
           </Box>
         </Box>
       </Container>

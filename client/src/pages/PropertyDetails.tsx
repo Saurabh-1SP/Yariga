@@ -1,25 +1,24 @@
-import { Typography, Box, Stack, Avatar } from "@pankod/refine-mui"
-import { useDelete, useGetIdentity, useShow } from "@pankod/refine-core"
-import { useParams, useNavigate } from "@pankod/refine-react-router-v6"
-import { AcUnit, Balcony, Bathtub, Bed, CallOutlined, ChatBubble,CropSquareSharp,CurrencyRupee, Edit, LocalParking, Menu, MenuOpen, MessageOutlined, Phone, Place, Pool, SmokingRooms, SportsGymnastics, Star, Wifi,} from '@mui/icons-material'
+import { Typography, Box, Stack, Avatar, CircularProgress } from "@pankod/refine-mui"
+import { AcUnit, Balcony, Bathtub, Bed, CallOutlined, CropSquareSharp,CurrencyRupee, LocalParking, MessageOutlined, Place, Pool, SmokingRooms, SportsGymnastics, Star, Wifi,} from '@mui/icons-material'
 import {map} from '../assets'
 
 
 import { CustomButton } from "components"
-import { METHODS } from "http"
+import { useShow } from "@pankod/refine-core"
 
 const PropertyDetails = () => {
-  const navigate = useNavigate();
-  const {data: user} = useGetIdentity();
-  const { id } = useParams();
-  const { mutate }  = useDelete();
+
+  // const navigate = useNavigate();
+  // const {data: user} = useGetIdentity();
+  // const { id } = useParams();
+  // const { mutate }  = useDelete();
   const { queryResult } = useShow();
 
   const { data, isLoading, isError } = queryResult;
 
   const propertyDetails = data?.data ?? {};
 
-  if(isLoading) return <div>Loading....</div>
+  if(isLoading) return <div><CircularProgress/></div>
   if(isError) return <div>Error</div>
 
   return (

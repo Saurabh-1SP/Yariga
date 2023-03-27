@@ -22,7 +22,7 @@ import { useTable } from "@pankod/refine-core";
 
 
 export const Header: React.FC = () => {
-  const [isSearching, setIsSearching] = useState(false);
+  // const [isSearching, setIsSearching] = useState(false);
   const [searched, setSearched] = useState(false)
     
   const { data: user } = useGetIdentity();
@@ -49,8 +49,7 @@ export const Header: React.FC = () => {
 // }
 
 const {
-  tableQueryResult:  { data,},
-  filters, setFilters,
+  tableQueryResult:  { data}, setFilters,
 } = useTable();
 
 let filterProperties = data?.data ?? [];
@@ -142,10 +141,10 @@ const PropertiesCard = () =>{
             justifyContent="center"
             >
             {user?.name ? (
-              <Typography variant="subtitle2">{user?.name}</Typography>
+              <Typography component={Link} to={`/my-profile`} variant="subtitle2">{user?.name}</Typography>
               ) : null}
             {user?.avatar ? (
-              <Avatar src={user?.avatar} alt={user?.name} />
+              <Avatar component={Link} to={`/my-profile`} src={user?.avatar} alt={user?.name} />
             ) : null}
           </Stack>
         </Stack>

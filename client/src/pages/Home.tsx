@@ -1,14 +1,10 @@
-import React from 'react'
-import {useList} from '@pankod/refine-core'
 import { Box, Typography , Stack} from '@pankod/refine-mui'
 
 import { 
   PieChart,
   PropertyReferrals,
-  PropertyCard,
   TotalRevenue,
-  TopAgent
-     } from 'components'
+} from 'components'
 
 const Home = () => {
   return (

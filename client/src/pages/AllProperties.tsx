@@ -1,7 +1,7 @@
 import {useMemo} from 'react'
 import {Add} from '@mui/icons-material'
 import { useTable} from '@pankod/refine-core'
-import { Box, Stack, TextField, Typography, Select, MenuItem} from '@pankod/refine-mui'
+import { Box, Stack, TextField, Typography, Select, MenuItem, CircularProgress} from '@pankod/refine-mui'
 import { useNavigate } from '@pankod/refine-react-router-v6'
 
 import { PropertyCard, CustomButton } from 'components'
@@ -38,7 +38,7 @@ const AllProperties = () =>{
       }
   }, [filters])
 
-  if(isLoading) return <Typography>Loading...</Typography>
+  if(isLoading) return <Typography><CircularProgress/></Typography>
   if(isError) return <Typography>Error....</Typography>
 
   return(
