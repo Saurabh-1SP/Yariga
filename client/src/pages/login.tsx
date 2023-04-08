@@ -56,7 +56,7 @@ export const Login: React.FC = () => {
       finally{
         toggle()
       }
-    }, []); // you can also add your client id as dependency here
+    });
 
     return <div ref={divRef} />;
   };
@@ -90,11 +90,11 @@ export const Login: React.FC = () => {
             <img src={yariga} alt="Refine Logo" />
           </div>
           <Box mt={4}>
-            {isLoading ? (
+            {isLoading ? 
               <CircularProgress/>
-            ) : (
+             : 
               <GoogleButton />
-            )}
+            }
           </Box>
         </Box>
       </Container>
