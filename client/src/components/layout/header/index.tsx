@@ -83,7 +83,7 @@ const PropertiesCard = () =>{
             <Card 
             component={Link}
             to={`/properties/show/${property._id}`}
-            onClick={()=>{console.log('ok dfad'); navigate(`/properties/show`); setTimeout(()=>setSearched(false),100);}}
+            onClick={()=>{ navigate(`/properties/show`); setTimeout(()=>setSearched(false),100);}}
             sx={{boxShadow: '0 22px 45px 2px rgba(176,176,176,0.1)', display: 'flex', flexDirection: 'row', margin:'1rem', backgroundColor: '#fcfcfc'}}
             elevation={0}
             >

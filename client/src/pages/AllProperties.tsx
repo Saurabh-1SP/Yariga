@@ -23,7 +23,7 @@ const AllProperties = () =>{
 
   const currentPrice = sorter.find((item) => item.field === 'price')?.order;
 
-  console.log(allProperties)
+  // console.log(allProperties)
 
   const toggleSort = (field: string) => {
     setSorter([{field, order: currentPrice === 'desc' ? 'asc' : 'desc'}])

@@ -8,7 +8,21 @@ import { CredentialResponse } from "../interfaces/google";
 
 export const Login: React.FC = () => {
   const { mutate: login } = useLogin<CredentialResponse>();
-  const [loading , setLoading] = useState(false);
+  const [isLoading,setIsLoading] = useState(false);
+
+  console.log(`this the login loading is ${isLoading}`)
+
+  const toggle = () => {
+    setIsLoading((prev) => !prev)
+  }
+
+  const handleCallback = async (res: CredentialResponse) => {
+    console.log('reaching')
+    toggle()
+    if (res.credential) {
+      login(res);
+    }
+  };
 
 
   const GoogleButton = (): JSX.Element => {
@@ -18,16 +32,18 @@ export const Login: React.FC = () => {
       if (typeof window === "undefined" || !window.google || !divRef.current) {
         return;
       }
-      setLoading(true)
       try {
         window.google.accounts.id.initialize({
           ux_mode: "popup",
           client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-          callback: async (res: CredentialResponse) => {
-            if (res.credential) {
-              login(res);
-            }
-          },
+          callback: handleCallback
+          // async (res: CredentialResponse) => {
+          //   setIsLoading(true)
+          //   if (res.credential) {
+          //     login(res);
+          //   }
+          //   setIsLoading(false)
+          // },
         });
         window.google.accounts.id.renderButton(divRef.current, {
           theme: "filled_blue",
@@ -36,8 +52,9 @@ export const Login: React.FC = () => {
         });
       } catch (error) {
         console.log(error);
-      } finally {
-        setLoading(false);
+      }
+      finally{
+        toggle()
       }
     }, []); // you can also add your client id as dependency here
 
@@ -73,10 +90,10 @@ export const Login: React.FC = () => {
             <img src={yariga} alt="Refine Logo" />
           </div>
           <Box mt={4}>
-            {loading ? (
+            {isLoading ? (
               <CircularProgress/>
             ) : (
-            <GoogleButton />
+              <GoogleButton />
             )}
           </Box>
         </Box>
