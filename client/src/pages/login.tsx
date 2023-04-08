@@ -8,12 +8,12 @@ import { CredentialResponse } from "../interfaces/google";
 
 export const Login: React.FC = () => {
   const { mutate: login } = useLogin<CredentialResponse>();
-  const [isLoading,setIsLoading] = useState(true);
+  const [isLoading,setIsLoading] = useState(false);
 
   console.log(`this the login loading is ${isLoading}`)
 
   const toggle = () => {
-    setIsLoading((prev) => !prev)
+    setIsLoading(!isLoading)
   }
 
   const handleCallback = async (res: CredentialResponse) => {
@@ -90,10 +90,10 @@ export const Login: React.FC = () => {
             <img src={yariga} alt="Refine Logo" />
           </div>
           <Box mt={4}>
-            {!isLoading ? 
+            {isLoading ?
               <CircularProgress/>
-             : 
-              <GoogleButton />
+              :
+              <GoogleButton/>
             }
           </Box>
         </Box>
