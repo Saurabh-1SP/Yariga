@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useLogin } from "@pankod/refine-core";
-import { Container, Box, CircularProgress } from "@pankod/refine-mui";
+import { Container, Box } from "@pankod/refine-mui";
 
 import { yariga } from "assets";
 
