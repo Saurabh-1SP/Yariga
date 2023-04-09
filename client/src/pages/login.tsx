@@ -90,11 +90,7 @@ export const Login: React.FC = () => {
             <img src={yariga} alt="Refine Logo" />
           </div>
           <Box mt={4}>
-            {isLoading ?
-              <CircularProgress/>
-              :
               <GoogleButton/>
-            }
           </Box>
         </Box>
       </Container>
