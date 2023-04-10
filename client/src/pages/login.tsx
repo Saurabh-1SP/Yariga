@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useLogin } from "@pankod/refine-core";
-import { Container, Box } from "@pankod/refine-mui";
+import { Container, Box, CircularProgress } from "@pankod/refine-mui";
 
 import { yariga } from "assets";
 
@@ -22,6 +22,7 @@ export const Login: React.FC = () => {
     if (res.credential) {
       login(res);
     }
+    toggle();
   };
 
 
@@ -53,9 +54,6 @@ export const Login: React.FC = () => {
       } catch (error) {
         console.log(error);
       }
-      finally{
-        toggle()
-      }
     });
 
     return <div ref={divRef} />;
@@ -78,21 +76,24 @@ export const Login: React.FC = () => {
           height: "100vh",
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <div>
-            <img src={yariga} alt="Refine Logo" />
-          </div>
-          <Box mt={4}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <div>
+              <img src={yariga} alt="Refine Logo" />
+            </div>
+            <Box mt={4}>
+              {isLoading ? 
+              <CircularProgress/> : 
               <GoogleButton/>
+              }
+            </Box>
           </Box>
-        </Box>
       </Container>
     </Box>
   );
